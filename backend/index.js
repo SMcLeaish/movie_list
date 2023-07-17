@@ -19,3 +19,11 @@ app.get('/movies',(req,res) =>{
             res.json(movieArray)
         })
 })
+
+app.get('/movie/:title', (req,res) => {
+    const { title } = req.params;
+    knex('movies')
+    .select('*')
+    .where({title})
+    .then(result => res.json(result))
+})
